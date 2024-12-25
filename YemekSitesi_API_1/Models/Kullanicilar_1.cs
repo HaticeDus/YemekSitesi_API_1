@@ -48,5 +48,8 @@ namespace YemekSitesi_API_1.Models
         public Adres_1? npAdres_1 { get; set; } // Navigation Property (np) 1-1 +
         [JsonIgnore]
         public ICollection<Siparisler_1>? npSiparisler_1 { get; set; } // Çoğul Navigation Property (np) 1-M
+
+        [JsonIgnore]
+        public ICollection<Sepet_1>? npSepet_1 { get; set; } // bir kullanıcının  birden fazla sepeti olabilir   
     }
 }

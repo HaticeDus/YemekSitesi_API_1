@@ -24,6 +24,7 @@ namespace YemekSitesi_API_1.Models
         public DbSet<Restaurant_Urun_1> Restaurant_Urun { get; set; }
         public DbSet<Siparisler_1> Siparisler { get; set; }
         public DbSet<Urunler_1> Urunler { get; set; }
+        public DbSet<Sepet_1> Sepet { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -59,6 +60,9 @@ namespace YemekSitesi_API_1.Models
 
             modelBuilder.Entity<Urunler_1>()
                 .HasKey(u => u.urunID);
+
+            modelBuilder.Entity<Sepet_1>() //13/10/2023
+                .HasKey(s => s.sepetID);
 
 
 
@@ -124,9 +128,12 @@ namespace YemekSitesi_API_1.Models
                 .OnDelete(DeleteBehavior.Restrict);// Silme işlemi yapıldığında DeleteBehavior.Restrict ile silmeyi kısıtlar
                                                    //.OnDelete(DeleteBehavior.Cascade); //otomatik silmesini istersek
 
-
-
-
+            //KULLANICILAR- SEPET // YENİ (13/10/2023)
+            modelBuilder.Entity<Sepet_1>()
+                .HasOne(s => s.npKullanicilar_1) // s (sepet tablosu)  Sepet_1 tablosunun 1 tane kullanıcısı olabilir
+                .WithMany(u => u.npSepet_1) // u(Kullanıcı_1 tablosu)  Kullanıcı_1 userID birden fazla sepetID'Si olabilir
+                .HasForeignKey(s => s.userID) // Sepet_1 tablosunun foreign key'i userID'dir
+                .OnDelete(DeleteBehavior.Restrict);
 
             // M-M İLİŞKİLER
 
@@ -344,6 +351,11 @@ namespace YemekSitesi_API_1.Models
                   new Urunler_1 { urunID = 922, urunAdi = "Acılı Ezme", urunFiyat = 12, kategoriID = 510, urunImg = "" }, //833
                   new Urunler_1 { urunID = 923, urunAdi = "Kalamar", urunFiyat = 55, kategoriID = 503, urunImg = "https://cdn.pixabay.com/photo/2016/03/28/10/01/food-1285314_640.jpg" } //834,
                  );
+
+
+            modelBuilder.Entity<Sepet_1>().HasData(
+                new Sepet_1 { sepetID=1, userID= 200, productAd= "Baklava", productAdet=1, productImg= "https://cdn.getiryemek.com/restaurants/1648114161397_1125x522.jpeg", productFiyat=15, productDate= new DateTime(2023, 10, 13, 10, 36, 55) }
+                );
         }
 
 

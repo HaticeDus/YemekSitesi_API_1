@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YemekSitesi_API_1.Models;
 
@@ -11,9 +12,11 @@ using YemekSitesi_API_1.Models;
 namespace YemekSitesi_API_1.Migrations
 {
     [DbContext(typeof(YemekSitesiDbContext))]
-    partial class YemekSitesiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231013073800_sepetDataSeeding")]
+    partial class sepetDataSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -857,7 +860,7 @@ namespace YemekSitesi_API_1.Migrations
 
                     b.HasIndex("userID");
 
-                    b.ToTable("Sepet");
+                    b.ToTable("Sepet_1");
 
                     b.HasData(
                         new

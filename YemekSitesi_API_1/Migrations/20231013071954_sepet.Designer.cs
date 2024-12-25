@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YemekSitesi_API_1.Models;
 
@@ -11,9 +12,11 @@ using YemekSitesi_API_1.Models;
 namespace YemekSitesi_API_1.Migrations
 {
     [DbContext(typeof(YemekSitesiDbContext))]
-    partial class YemekSitesiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231013071954_sepet")]
+    partial class sepet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -857,19 +860,7 @@ namespace YemekSitesi_API_1.Migrations
 
                     b.HasIndex("userID");
 
-                    b.ToTable("Sepet");
-
-                    b.HasData(
-                        new
-                        {
-                            sepetID = 1,
-                            productAd = "Baklava",
-                            productAdet = 1,
-                            productDate = new DateTime(2023, 10, 13, 10, 36, 55, 0, DateTimeKind.Unspecified),
-                            productFiyat = 15,
-                            productImg = "https://cdn.getiryemek.com/restaurants/1648114161397_1125x522.jpeg",
-                            userID = 200
-                        });
+                    b.ToTable("Sepet_1");
                 });
 
             modelBuilder.Entity("YemekSitesi_API_1.Models.Siparisler_1", b =>
